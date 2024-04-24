@@ -27,7 +27,7 @@ public class MyArrayList<T> implements myList<T> {
         if(size>=arr.length){
             increaseBuffer();
         }
-        arr[size+1] = item;
+        arr[size++] = item;
     }
 
     @Override
@@ -46,42 +46,54 @@ public class MyArrayList<T> implements myList<T> {
 
     @Override
     public void addFirst(T item) {
+        arr[0] = item;
 
     }
 
     @Override
     public void addLast(T item) {
-
+        arr[arr.length-1] = item;
     }
 
     @Override
     public T get(int index) {
-        return null;
+        checkIndex(index);
+        return arr[index];
     }
 
     @Override
-    public T getFirst(int index) {
-        return null;
+    public T getFirst() {
+        return arr[0];
     }
 
     @Override
-    public T getLast(int index) {
-        return null;
+    public T getLast() {
+        return arr[arr.length-1];
     }
 
     @Override
     public void remove(int index) {
-
+        checkIndex(index);
+        for (int i = index+1; i<size; i++){
+            arr[i-1] = arr[i];
+        }
+        size--;
     }
 
     @Override
     public void removeFirst() {
-
+        for (int i = 0; i<size; i++){
+            arr[i-1] = arr[i];
+        }
+        size--;
     }
 
     @Override
     public void removeLast() {
-
+        for (int i = size-1; i<size; i++){
+            arr[i-1] = arr[i];
+        }
+        size--;
     }
 
     @Override

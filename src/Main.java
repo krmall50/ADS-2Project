@@ -3,6 +3,13 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Ready for start project! Good luck me tomorrow!");
+        MyArrayList arrayList = new MyArrayList();
+        arrayList.add(5);
+        arrayList.add(9);
+        arrayList.add(6);
+        arrayList.add(3);
+        arrayList.add(7);
+        arrayList.remove(2);
+        System.out.println(arrayList.getLast());
     }
 }
