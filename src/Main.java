@@ -42,5 +42,22 @@ public class Main {
         linkedList.add(0, 7);
         System.out.print("All elements of Linked list: ");
         linkedList.printArr();
+        System.out.println();
+        System.out.println("-----------------------Stack----------------------------");
+        System.out.println();
+        MyStack stack = new MyStack<>(10);
+        stack.push(1);
+        stack.push(6);
+        stack.push(3);
+        stack.push(0);
+        stack.push(8);
+        System.out.println("Is stack empty?: " + stack.empty());
+        System.out.println("Size of the stack: " + stack.size());
+        stack.pop();
+        stack.pop();
+        System.out.println("Size of the stack after two pops: " + stack.size());
+        System.out.println("A reference to the topmost element of the stack: " + stack.peek());
+        System.out.println("Element with index two is: " + stack.get(2));
+
     }
 }

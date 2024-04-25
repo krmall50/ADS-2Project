@@ -153,17 +153,36 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public int indexOf(Object object) {
-        return 0;
+        Node<T> current = head;
+        int index = 0;
+        while (current != null) {
+            if (current.data.equals(object)) {
+                return index;
+            }
+            current = current.next;
+            index++;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object object) {
-        return 0;
+        int lastIndex = -1;
+        Node<T> current = head;
+        int index = 0;
+        while (current != null) {
+            if (current.data.equals(object)) {
+                lastIndex = index;
+            }
+            current = current.next;
+            index++;
+        }
+        return lastIndex;
     }
 
     @Override
     public boolean exists(Object object) {
-        return false;
+        return indexOf(object) != -1;
     }
 
     @Override
@@ -173,12 +192,13 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void clear() {
-
+        head = null;
+        size = 0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
