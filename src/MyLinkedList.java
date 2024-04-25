@@ -14,10 +14,18 @@ public class MyLinkedList<T> implements MyList<T> {
             throw new ArrayIndexOutOfBoundsException("Index is not correct!");
         }
     }
+    public void printArr(){
+        Node<T> current = head;
+        while (current != null) {
+            System.out.print(current.data);
+            System.out.print(" ");
+            current = current.next;
+        }
+    }
 
     @Override
     public void add(T item) {
-        addLast(item);
+        addFirst(item);
     }
 
     @Override
@@ -32,7 +40,25 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public void add(int index, T item) {
-
+        checkIndex(index);
+        if (index == 0) {
+            addFirst(item);
+            return;
+        }
+        if (index == size) {
+            addLast(item);
+            return;
+        }
+        Node<T> newNode = new Node<>(item);
+        Node<T> prev = null;
+        Node<T> current = head;
+        for (int i = 0; i < index; i++) {
+            prev = current;
+            current = current.next;
+        }
+        prev.next = newNode;
+        newNode.next = current;
+        size++;
     }
 
     @Override
@@ -60,32 +86,64 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        checkIndex(index);
+        Node<T> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.data;
     }
 
     @Override
     public T getFirst() {
-        return null;
+        return head.data;
     }
 
     @Override
     public T getLast() {
-        return null;
+        Node<T> current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.data;
     }
 
     @Override
     public void remove(int index) {
-
+        checkIndex(index);
+        if (index == 0) {
+            removeFirst();
+            return;
+        }
+        Node<T> prev = null;
+        Node<T> current = head;
+        for (int i = 0; i < index; i++) {
+            prev = current;
+            current = current.next;
+        }
+        prev.next = current.next;
+        current.next = null;
+        size--;
     }
 
     @Override
     public void removeFirst() {
-
+        Node<T> temp = head;
+        head = head.next;
+        temp.next = null;
+        size--;
     }
 
     @Override
     public void removeLast() {
-
+        Node<T> prev = null;
+        Node<T> current = head;
+        while (current.next != null) {
+            prev = current;
+            current = current.next;
+        }
+        prev.next = null;
+        size--;
     }
 
     @Override
